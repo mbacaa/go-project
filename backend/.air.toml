@@ -1,0 +1,32 @@
+[build]
+  cmd = "go build -o ./tmp/main ."
+  bin = "./tmp/main"
+  full_bin = "./tmp/main"
+  include_ext = ["go", "tpl", "tmpl", "html"]
+  exclude_dir = ["assets", "tmp", "vendor"]
+  exclude_file = ["go.mod", "go.sum", ".air.toml"]
+  delay = 1000
+  stop_on_modify = false
+  kill_signal = "SIGINT"
+  grace_period = 1000
+  tmp_dir = "tmp"
+  log = "air.log"
+  load = ""
+  exclude_changed = [".air.toml"]
+
+[log]
+  output = "stdout"
+  level = "info"
+  color = true
+  timestamp = "2006-01-02 15:04:05"
+
+[init]
+  shell = "sh"
+  cmd = ""
+
+[terminal]
+  shell = "sh"
+  cmd = ""
+  split_log = false
+  long_command = false
+  long_command_delay = 1000

@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+	font-family: 'Triakis';
+	src: url('../public/fonts/Triakis.otf') format('opentype');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Space';
+	src: url('../public/fonts/Space.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+}
