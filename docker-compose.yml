@@ -13,5 +13,45 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  backend:
+    build:
+      context: ./backend
+    container_name: backend
+    environment:
+      - PORT=8080
+      - DB_USER=user
+      - DB_PASSWORD=password
+      - DB_NAME=mydatabase
+      - DB_HOST=db
+      - DB_PORT=5432
+      - FRONTEND_URL=http://localhost:3000
+    depends_on:
+      - db
+    volumes:
+      - ./backend/.env:/root/.env
+    ports:
+      - '8080:8080'
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    environment:
+      - NEXT_PUBLIC_API_BASE_URL=http://backend:8080/api
+    depends_on:
+      - backend
+    ports:
+      - '3000:3000'
+
+  nginx:
+    build:
+      context: ./nginx
+    container_name: nginx
+    ports:
+      - '80:80'
+    depends_on:
+      - frontend
+      - backend
+
 volumes:
   postgres_data:
