@@ -2,6 +2,7 @@ package main
 
 import (
 	"backend/inits"
+	"backend/models"
 	"backend/routes"
 	"time"
 
@@ -28,4 +29,11 @@ func main() {
 
 	routes.SetupRoutes(r)
 	r.Run()
+
+	go func() {
+		for {
+			time.Sleep(5 * time.Minute)
+			models.DeleteExpiredMessages()
+		}
+	}()
 }
